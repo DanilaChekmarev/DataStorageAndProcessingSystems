@@ -50,7 +50,6 @@
 
 ## 4) HLD диаграмма (C4 container — схема связей)
 
-```mermaid
 flowchart LR
   U[Пользователь] -->|HTTPS| I[Ingress (shopnow.local)]
 
@@ -68,4 +67,5 @@ flowchart LR
 
   C --> R[recsys-external (VM вне k8s)]
   O --> PAY[Payment provider (внешний REST)]
+
   N --> NOTIFY[Email/SMS provider (внешний REST)]
