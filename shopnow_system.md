@@ -18,15 +18,13 @@
 | `postgres` | База данных (каталог/заказы) | 5432 | `postgres:16-alpine` |
 | `rabbitmq` | Очередь сообщений | 5672, 15672 | `rabbitmq:3.13-management` |
 
-Примечание: в манифестах для микросервисов по умолчанию стоят **публичные заглушки**, чтобы можно было поднять кластер локально без сборки. Для “боевого” варианта просто замените `image:` на ваши реальные.
-
 ### 2.2. Внешние зависимости (REST/источники данных)
 - **Платёжный провайдер** (внешний REST): `pay.example.com:443` (HTTPS). Использует `order-service`.
 - **Email/SMS провайдер** (внешний REST): `notify.example.com:443` (HTTPS). Использует `notification-worker`.
 
 ### 2.3. Компоненты вне Kubernetes (с портом, IP/DNS, сервером, требованиями)
 
-**Recommendation Engine (Recsys)** — внешний сервис рекомендаций (отдельная VM, не в k8s).
+**Recommendation Engine (Recsys)** — внешний сервис рекомендаций.
 - Назначение: отдаёт рекомендации для `catalog-service`
 - DNS: `recsys.shopnow.internal`
 - IP: `10.10.20.15`
@@ -69,3 +67,4 @@ flowchart LR
   O --> PAY[Payment provider (внешний REST)]
 
   N --> NOTIFY[Email/SMS provider (внешний REST)]
+
